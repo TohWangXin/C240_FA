@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="AI-powered scholarship finder that helps students discover scholarships they're eligible for in simple, clear language.">
+    <meta name="keywords" content="scholarship finder, student financial aid, eligibility checker, education funding">
+    <title>AI Scholarship Finder & Eligibility Checker</title>
+    
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+ 
+    <!-- Header -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <span class="logo-icon" aria-hidden="true">🌟</span>
+                    <h1 class="logo-text">Scholarship Finder</h1>
+                </div>
+                <nav class="nav" role="navigation" aria-label="Main navigation">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link">Home</a></li>
+                        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
+                        <li><a href="#about" class="nav-link">About</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <h2 class="hero-title">Find Scholarships You Actually Qualify For</h2>
+                    <p class="hero-subtitle">Stop wasting time on scholarships you can't get. Our AI checks your eligibility instantly—in simple English.</p>
+                    <a href="#checker" class="cta-button">Check Your Eligibility Now</a>
+                </div>
+            </div>
+        </section>
+
+
+        <!-- Problem Section -->
+        <section class="problem-section">
+            <div class="container">
+                <h2 class="section-title">The Problem Students Face</h2>
+                <div class="problem-grid">
+                    <div class="problem-card">
+                        <span class="problem-icon" aria-hidden="true">📊</span>
+                        <h3>Different Requirements</h3>
+                        <p>Every scholarship has different GPA, CCA, income, or course criteria</p>
+                    </div>
+                    <div class="problem-card">
+                        <span class="problem-icon" aria-hidden="true">🌐</span>
+                        <h3>Scattered Information</h3>
+                        <p>Information is spread across multiple websites and platforms</p>
+                    </div>
+                    <div class="problem-card">
+                        <span class="problem-icon" aria-hidden="true">📝</span>
+                        <h3>Confusing Language</h3>
+                        <p>Requirements written in formal, hard-to-understand terms</p>
+                    </div>
+                    <div class="problem-card">
+                        <span class="problem-icon" aria-hidden="true">⏰</span>
+                        <h3>Wasted Time</h3>
+                        <p>Students apply for scholarships they're not even eligible for</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Eligibility Checker Section -->
+        <section id="checker" class="checker-section">
+            <div class="container">
+                <h2 class="section-title">Check Your Eligibility</h2>
+                <p class="section-subtitle">Answer a few simple questions and we'll show you scholarships you qualify for</p>
+                
+                <form id="eligibility-form" class="eligibility-form" novalidate>
+                    <!-- GPA Input -->
+                    <div class="form-group">
+                        <label for="gpa" class="form-label">
+                            What is your GPA?
+                            <span class="help-text">Enter a number between 0.0 and 4.0</span>
+                        </label>
+                        <input 
+                            type="number" 
+                            id="gpa" 
+                            name="gpa" 
+                            class="form-input" 
+                            min="0" 
+                            max="4.0" 
+                            step="0.01" 
+                            placeholder="e.g., 3.5"
+                            required
+                            aria-required="true"
+                            aria-describedby="gpa-error">
+                        <span id="gpa-error" class="error-message" role="alert" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Income Input -->
+                    <div class="form-group">
+                        <label for="income" class="form-label">
+                            What is your household income?
+                            <span class="help-text">Annual income in dollars</span>
+                        </label>
+                        <select id="income" name="income" class="form-select" required aria-required="true">
+                            <option value="">Select income range</option>
+                            <option value="low">Below $30,000</option>
+                            <option value="medium">$30,000 - $60,000</option>
+                            <option value="high">Above $60,000</option>
+                        </select>
+                        <span id="income-error" class="error-message" role="alert" aria-live="polite"></span>
+                    </div>
+
+                    <!-- Course/Field of Study -->
+                    <div class="form-group">
+                        <label for="course" class="form-label">
+                            What are you studying?
+                            <span class="help-text">Your field of study or major</span>
+                        </label>
+                        <input 
+                            type="text" 
+                            id="course" 
+                            name="course" 
+                            class="form-input" 
+                            placeholder="e.g., Computer Science, Engineering"
+                            required
+                            aria-required="true"
+                            aria-describedby="course-error">
+                        <span id="course-error" class="error-message" role="alert" aria-live="polite"></span>
+                    </div>
+
+                    <!-- CCA/Activities -->
+                    <div class="form-group">
+                        <label for="activities" class="form-label">
+                            What activities are you involved in?
+                            <span class="help-text">Co-curricular activities, sports, volunteering</span>
+                        </label>
+                        <textarea 
+                            id="activities" 
+                            name="activities" 
+                            class="form-textarea" 
+                            rows="3" 
+                            placeholder="e.g., Student council, basketball team, community service"
+                            aria-describedby="activities-help"></textarea>
+                        <span id="activities-help" class="help-text">Optional - helps find more scholarships</span>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="submit-button">
+                        Find My Scholarships
+                    </button>
+                </form>
+
+                <!-- Results Section (Initially Hidden) -->
+                <div id="results" class="results-section" role="region" aria-live="polite" aria-label="Scholarship results">
+                    <!-- Results will be dynamically inserted here -->
+                </div>
+
+                <!-- Loading Indicator -->
+                <div id="loading" class="loading-indicator" role="status" aria-live="polite" hidden>
+                    <span class="spinner" aria-hidden="true"></span>
+                    <span>Finding scholarships for you...</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- How It Works Section -->
+        <section id="how-it-works" class="how-it-works">
+            <div class="container">
+                <h2 class="section-title">How Our AI Agent Works</h2>
+                <p class="section-subtitle">Watch our intelligent agent find scholarships in real-time</p>
+                
+                <!-- AI Agent Demo Video -->
+                <div class="video-wrapper" style="margin: 2rem auto 3rem; max-width: 900px;">
+                    <div class="video-container" style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; border-radius: 16px; box-shadow: 0 10px 30px rgba(0,0,0,0.2);">
+                        
+                        <!-- OPTION 1: YouTube Video (Commented out) -->
+                        <!-- 
+                        <iframe 
+                            id="agent-video"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                            src="https://www.youtube.com/embed/YOUR_VIDEO_ID" 
+                            title="AI Scholarship Agent Demo" 
+                            frameborder="0" 
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                            allowfullscreen>
+                        </iframe>
+                        -->
+                        
+                        <!-- OPTION 2: Local Video File (ACTIVE) -->
+                        <video 
+                            id="agent-video"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                            controls 
+                            poster="videos/agent-demo-thumbnail.jpg">
+                            <source src="videos/agent-demo.mp4" type="video/mp4">
+                            <source src="videos/agent-demo.webm" type="video/webm">
+                            Your browser does not support the video tag.
+                        </video>
+                        
+                        <!-- OPTION 3: Google Drive (Commented out) -->
+                        <!-- 
+                        <iframe 
+                            id="agent-video"
+                            style="position: absolute; top: 0; left: 0; width: 100%; height: 100%;"
+                            src="https://drive.google.com/file/d/YOUR_FILE_ID/preview" 
+                            allowfullscreen>
+                        </iframe>
+                        -->
+                    </div>
+                    <p style="text-align: center; color: var(--color-neutral-medium); margin-top: 1rem; font-size: 14px;">
+                        💡 See how the AI agent analyzes your profile and finds matching scholarships instantly
+                    </p>
+                </div>
+                
+                <h3 class="section-title" style="font-size: var(--font-size-xl); margin-top: 3rem; margin-bottom: 2rem;">Step-by-Step Process</h3>
+                <div class="steps-grid">
+                    <div class="step-card">
+                        <span class="step-number">1</span>
+                        <h3>Enter Your Info</h3>
+                        <p>Tell us about your GPA, income, course, and activities</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">2</span>
+                        <h3>AI Checks Eligibility</h3>
+                        <p>Our AI instantly compares your profile against all scholarships</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">3</span>
+                        <h3>Get Simple Results</h3>
+                        <p>See which scholarships you qualify for—explained in plain English</p>
+                    </div>
+                    <div class="step-card">
+                        <span class="step-number">4</span>
+                        <h3>Apply with Confidence</h3>
+                        <p>Apply knowing you meet all the requirements</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2 class="section-title">Why We Built This</h2>
+                <p class="about-text">
+                    Many students—especially those from low-income backgrounds—miss out on scholarships 
+                    because requirements are too confusing. We believe every student deserves access to 
+                    financial support, explained in simple language they can understand.
+                </p>
+                <p class="about-text">
+                    Our AI-powered system breaks down complex scholarship criteria into clear, 
+                    easy-to-understand information, helping you find funding opportunities you actually qualify for.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer" role="contentinfo">
+        <div class="container">
+            <p class="footer-text">&copy; 2026 AI Scholarship Finder. Helping students access educational opportunities.</p>
+        </div>
+    </footer>
+
+    <!-- Toast Notification Container -->
+    <div id="toast-container" class="toast-container" role="status" aria-live="polite" aria-atomic="true"></div>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+    
+    <!-- Flowise AI Chatbot Embed -->
+    <script type="module">
+        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
+        Chatbot.init({
+            chatflowid: "6a5712e1-6ff9-48e7-baee-c7b9c64866b4",
+            apiHost: "https://flowise-production-ad0b.up.railway.app",
+            theme: {
+                button: {
+                    backgroundColor: "#2563EB",
+                    right: 20,
+                    bottom: 20,
+                    size: "medium",
+                    iconColor: "white",
+                    customIconSrc: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg",
+                },
+                chatWindow: {
+                    welcomeMessage: "Hi! 👋 I'm your AI Scholarship Assistant. Ask me anything about scholarships, eligibility, or how to find funding for your education!",
+                    backgroundColor: "#ffffff",
+                    height: 600,
+                    width: 400,
+                    fontSize: 16,
+                    poweredByTextColor: "#64748B",
+                    botMessage: {
+                        backgroundColor: "#F1F5F9",
+                        textColor: "#1E293B",
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
+                    },
+                    userMessage: {
+                        backgroundColor: "#2563EB",
+                        textColor: "#ffffff",
+                        showAvatar: true,
+                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
+                    },
+                    textInput: {
+                        placeholder: "Ask about scholarships...",
+                        backgroundColor: "#ffffff",
+                        textColor: "#1E293B",
+                        sendButtonColor: "#2563EB",
+                    }
+                }
+            }
+        })
+    </script>
+</body>
+</html>
