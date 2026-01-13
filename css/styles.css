@@ -146,7 +146,7 @@ p {
     position: sticky;
     top: 0;
     z-index: 50;
-    padding: var(--spacing-md) 0;
+ 
 }
 
 .header-content {
@@ -159,6 +159,12 @@ p {
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
+    text-decoration: none;
+    transition: opacity var(--transition-fast);
+}
+
+.logo:hover {
+    opacity: 0.8;
 }
 
 .logo-icon {
