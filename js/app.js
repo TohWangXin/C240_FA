@@ -752,16 +752,17 @@ const init = () => {
     
     // Setup form submission
     const form = document.getElementById('eligibility-form');
-    form.addEventListener('submit', handleFormSubmit);
-    
-    // Setup real-time validation
-    setupRealtimeValidation();
+    if (form) {
+        form.addEventListener('submit', handleFormSubmit);
+        setupRealtimeValidation();
+        autofillForm();
+    }
     
     // Setup smooth scrolling
     setupSmoothScrolling();
     
-    // Autofill from saved profile
-    autofillForm();
+    // Setup Essay Library features
+    setupEssayLibrary();
     
     // Add entrance animation to hero
     const hero = document.querySelector('.hero');
@@ -774,6 +775,358 @@ const init = () => {
             hero.style.transform = 'translateY(0)';
         }, 100);
     }
+};
+
+// ===================================
+// ESSAY LIBRARY FEATURES
+// ===================================
+
+/**
+ * Setup Essay Library word counter and tone analyzer
+ */
+const setupEssayLibrary = () => {
+    const essayInput = document.getElementById('essay-input');
+    const checkBtn = document.getElementById('check-essay-btn');
+    
+    if (!essayInput) return;
+
+    essayInput.addEventListener('input', debounce(() => {
+        updateWordCount();
+        analyzeTone();
+    }, 300));
+
+    if (checkBtn) {
+        checkBtn.addEventListener('click', checkEssayQuality);
+    }
+};
+
+/**
+ * Update word and character count
+ */
+const updateWordCount = () => {
+    const essayInput = document.getElementById('essay-input');
+    const wordCountEl = document.getElementById('word-count');
+    const charCountEl = document.getElementById('char-count');
+
+    const text = essayInput.value.trim();
+    const wordCount = text.length === 0 ? 0 : text.split(/\s+/).length;
+    const charCount = text.length;
+
+    wordCountEl.textContent = wordCount;
+    charCountEl.textContent = charCount;
+};
+
+/**
+ * Analyze essay tone (formal, casual, balanced)
+ */
+const analyzeTone = () => {
+    const essayInput = document.getElementById('essay-input');
+    const toneResultEl = document.getElementById('tone-result');
+    const toneFeedbackEl = document.getElementById('tone-feedback');
+
+    const text = essayInput.value.toLowerCase();
+
+    if (text.trim().length < 50) {
+        toneResultEl.textContent = 'Neutral';
+        toneFeedbackEl.textContent = '';
+        toneFeedbackEl.className = 'tone-feedback';
+        return;
+    }
+
+    // Formal indicators
+    const formalWords = ['furthermore', 'moreover', 'consequently', 'nevertheless', 'therefore', 'thus', 'henceforth', 'wherein', 'thereby'];
+    const casualWords = ['yeah', 'cool', 'awesome', 'gonna', 'wanna', 'kinda', 'sorta', 'hey', 'wow', 'super'];
+    const contractions = ["don't", "can't", "won't", "i'm", "you're", "it's", "we're", "they're"];
+
+    let formalScore = 0;
+    let casualScore = 0;
+
+    // Count formal words
+    formalWords.forEach(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'g');
+        const matches = text.match(regex);
+        if (matches) formalScore += matches.length * 2;
+    });
+
+    // Count casual words
+    casualWords.forEach(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'g');
+        const matches = text.match(regex);
+        if (matches) casualScore += matches.length * 2;
+    });
+
+    // Count contractions
+    contractions.forEach(word => {
+        const regex = new RegExp(`\\b${word}\\b`, 'g');
+        const matches = text.match(regex);
+        if (matches) casualScore += matches.length;
+    });
+
+    // Check sentence length (longer = more formal)
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+    const avgSentenceLength = sentences.reduce((sum, s) => sum + s.split(/\s+/).length, 0) / sentences.length;
+    
+    if (avgSentenceLength > 20) formalScore += 3;
+    if (avgSentenceLength < 12) casualScore += 3;
+
+    // Determine tone
+    let tone, feedback, feedbackClass;
+    
+    if (formalScore > casualScore + 3) {
+        tone = 'Formal';
+        feedback = '📘 Your essay has a formal academic tone. This is good for scholarship applications! Consider adding personal anecdotes to make it more engaging.';
+        feedbackClass = 'formal';
+    } else if (casualScore > formalScore + 3) {
+        tone = 'Casual';
+        feedback = '💬 Your essay sounds conversational. Try using more formal language and avoiding contractions for scholarship applications.';
+        feedbackClass = 'casual';
+    } else {
+        tone = 'Balanced';
+        feedback = '✅ Perfect balance! Your tone is professional yet personal - ideal for scholarship essays.';
+        feedbackClass = 'balanced';
+    }
+
+    toneResultEl.textContent = tone;
+    toneFeedbackEl.textContent = feedback;
+    toneFeedbackEl.className = `tone-feedback ${feedbackClass}`;
+};
+
+/**
+ * AI Essay Quality Checker
+ */
+const checkEssayQuality = () => {
+    const essayInput = document.getElementById('essay-input');
+    const resultsDiv = document.getElementById('quality-results');
+    const scoreDiv = document.getElementById('quality-score');
+    const feedbackDiv = document.getElementById('quality-feedback');
+
+    const text = essayInput.value.trim();
+
+    if (text.length < 100) {
+        alert('Please write at least 100 characters for a meaningful analysis.');
+        return;
+    }
+
+    // Analysis criteria
+    const analysis = {
+        score: 0,
+        maxScore: 100,
+        feedback: []
+    };
+
+    // 1. Length Check (0-15 points)
+    const wordCount = text.split(/\s+/).length;
+    if (wordCount >= 250 && wordCount <= 650) {
+        analysis.score += 15;
+        analysis.feedback.push({
+            type: 'positive',
+            icon: '✅',
+            title: 'Perfect Length',
+            text: `Your essay has ${wordCount} words - ideal for scholarship applications (250-650 words).`
+        });
+    } else if (wordCount < 250) {
+        analysis.score += 8;
+        analysis.feedback.push({
+            type: 'warning',
+            icon: '⚠️',
+            title: 'Too Short',
+            text: `Your essay has ${wordCount} words. Most scholarships require 250-650 words. Add more specific examples and details.`
+        });
+    } else {
+        analysis.score += 10;
+        analysis.feedback.push({
+            type: 'warning',
+            icon: '⚠️',
+            title: 'Too Long',
+            text: `Your essay has ${wordCount} words. Consider cutting to 250-650 words to stay focused and respect word limits.`
+        });
+    }
+
+    // 2. Personal Examples Check (0-20 points)
+    const personalIndicators = /\b(i|my|me|myself|when i|i was|i am|i have|my family|my experience)\b/gi;
+    const personalCount = (text.match(personalIndicators) || []).length;
+    const hasStory = /\b(when|during|after|before|while|once|remember)\b/gi.test(text);
+    
+    if (personalCount >= 5 && hasStory) {
+        analysis.score += 20;
+        analysis.feedback.push({
+            type: 'positive',
+            icon: '✅',
+            title: 'Personal & Authentic',
+            text: 'Great use of personal experiences and stories! This makes your essay engaging and unique.'
+        });
+    } else if (personalCount >= 3) {
+        analysis.score += 12;
+        analysis.feedback.push({
+            type: 'warning',
+            icon: '💡',
+            title: 'Add More Personal Stories',
+            text: 'Include specific anecdotes from your life to make your essay more memorable and authentic.'
+        });
+    } else {
+        analysis.score += 5;
+        analysis.feedback.push({
+            type: 'negative',
+            icon: '❌',
+            title: 'Too Generic',
+            text: 'Your essay lacks personal examples. Share specific experiences, challenges, or moments that shaped you.'
+        });
+    }
+
+    // 3. Specific Details Check (0-20 points)
+    const specificIndicators = /\b(\d+|specific|for example|such as|including|particularly|specifically|named)\b/gi;
+    const vagueWords = /\b(good|nice|great|many|some|things|stuff|very|really)\b/gi;
+    const specificCount = (text.match(specificIndicators) || []).length;
+    const vagueCount = (text.match(vagueWords) || []).length;
+    
+    if (specificCount > vagueCount && specificCount >= 3) {
+        analysis.score += 20;
+        analysis.feedback.push({
+            type: 'positive',
+            icon: '✅',
+            title: 'Specific & Detailed',
+            text: 'Excellent use of specific examples, numbers, and concrete details. This makes your essay credible.'
+        });
+    } else if (specificCount >= 2) {
+        analysis.score += 12;
+        analysis.feedback.push({
+            type: 'warning',
+            icon: '💡',
+            title: 'Add More Specifics',
+            text: 'Replace vague words ("good", "nice", "many") with specific details, numbers, and examples.'
+        });
+    } else {
+        analysis.score += 5;
+        analysis.feedback.push({
+            type: 'negative',
+            icon: '❌',
+            title: 'Too Vague',
+            text: 'Your essay uses too many general statements. Add specific names, numbers, achievements, and details.'
+        });
+    }
+
+    // 4. Goal & Impact Check (0-20 points)
+    const goalWords = /\b(goal|aspire|plan|aim|hope|dream|future|will|career|contribute|impact|change|help|serve)\b/gi;
+    const goalCount = (text.match(goalWords) || []).length;
+    
+    if (goalCount >= 4) {
+        analysis.score += 20;
+        analysis.feedback.push({
+            type: 'positive',
+            icon: '✅',
+            title: 'Clear Goals & Impact',
+            text: 'You clearly articulate your goals and how you\'ll make an impact. Scholarship committees love this!'
+        });
+    } else if (goalCount >= 2) {
+        analysis.score += 12;
+        analysis.feedback.push({
+            type: 'warning',
+            icon: '💡',
+            title: 'Strengthen Your Vision',
+            text: 'Expand on your future goals and how this scholarship will help you achieve them.'
+        });
+    } else {
+        analysis.score += 5;
+        analysis.feedback.push({
+            type: 'negative',
+            icon: '❌',
+            title: 'Missing Future Vision',
+            text: 'Explain your goals and how you plan to contribute to your field or community after graduation.'
+        });
+    }
+
+    // 5. Structure Check (0-15 points)
+    const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 10);
+    const paragraphs = text.split(/\n\n+/).filter(p => p.trim().length > 0);
+    const avgSentenceLength = sentences.reduce((sum, s) => sum + s.split(/\s+/).length, 0) / sentences.length;
+    
+    if (paragraphs.length >= 3 && paragraphs.length <= 5 && avgSentenceLength > 10 && avgSentenceLength < 25) {
+        analysis.score += 15;
+        analysis.feedback.push({
+            type: 'positive',
+            icon: '✅',
+            title: 'Well-Structured',
+            text: `Great structure with ${paragraphs.length} paragraphs and clear, readable sentences.`
+        });
+    } else if (paragraphs.length >= 2) {
+        analysis.score += 10;
+        analysis.feedback.push({
+            type: 'warning',
+            icon: '💡',
+            title: 'Improve Structure',
+            text: 'Aim for 3-5 paragraphs with varied sentence lengths. Break up long paragraphs for better readability.'
+        });
+    } else {
+        analysis.score += 5;
+        analysis.feedback.push({
+            type: 'negative',
+            icon: '❌',
+            title: 'Poor Structure',
+            text: 'Break your essay into clear paragraphs: Introduction, Body (experiences/goals), and Conclusion.'
+        });
+    }
+
+    // 6. Passion & Enthusiasm (0-10 points)
+    const passionWords = /\b(passionate|love|excited|dedicated|committed|driven|motivated|inspire|inspire)\b/gi;
+    const passionCount = (text.match(passionWords) || []).length;
+    
+    if (passionCount >= 2) {
+        analysis.score += 10;
+        analysis.feedback.push({
+            type: 'positive',
+            icon: '✅',
+            title: 'Passionate & Motivated',
+            text: 'Your enthusiasm shines through! This energy makes your essay compelling.'
+        });
+    } else {
+        analysis.score += 5;
+        analysis.feedback.push({
+            type: 'warning',
+            icon: '💡',
+            title: 'Show Your Passion',
+            text: 'Let your excitement and dedication come through more clearly. Why does this matter to you?'
+        });
+    }
+
+    // Calculate percentage
+    const percentage = Math.round((analysis.score / analysis.maxScore) * 100);
+
+    // Determine rating
+    let rating, ratingClass, ratingEmoji;
+    if (percentage >= 85) {
+        rating = 'Excellent';
+        ratingClass = 'excellent';
+        ratingEmoji = '🌟';
+    } else if (percentage >= 70) {
+        rating = 'Good';
+        ratingClass = 'good';
+        ratingEmoji = '👍';
+    } else if (percentage >= 50) {
+        rating = 'Needs Work';
+        ratingClass = 'needs-work';
+        ratingEmoji = '⚠️';
+    } else {
+        rating = 'Needs Major Revision';
+        ratingClass = 'poor';
+        ratingEmoji = '📝';
+    }
+
+    // Display results
+    scoreDiv.className = `quality-score ${ratingClass}`;
+    scoreDiv.innerHTML = `
+        <span class="score-percentage">${ratingEmoji} ${percentage}%</span>
+        <span class="score-label">${rating}</span>
+    `;
+
+    feedbackDiv.innerHTML = analysis.feedback.map(item => `
+        <div class="feedback-item ${item.type}">
+            <div class="feedback-item-title">${item.icon} ${item.title}</div>
+            <div class="feedback-item-text">${item.text}</div>
+        </div>
+    `).join('');
+
+    resultsDiv.style.display = 'block';
+    resultsDiv.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
 };
 
 // Run initialization when DOM is ready

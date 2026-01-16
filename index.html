@@ -23,15 +23,17 @@
     <header class="header" role="banner">
         <div class="container">
             <div class="header-content">
-               <a href="home.html" class="logo">
+                <a href="https://raelyn23050595.github.io/ScholarMatch/" class="logo">
                     <img src="images/logo.png" alt="ScholarMatch Logo" class="logo-icon">
                     <h1 class="logo-text">ScholarMatch</h1>
                 </a>
                 <nav class="nav" role="navigation" aria-label="Main navigation">
                     <ul class="nav-list">
-                        <li><a href="#home" class="nav-link">Home</a></li>
-                        <li><a href="#how-it-works" class="nav-link">How It Works</a></li>
-                        <li><a href="#about" class="nav-link">About</a></li>
+                        <li><a href="https://23018472-tunaungmyin.github.io/C240_AungMyin/" class="nav-link">Search Scholarships<br>(Aung Myin)</a></li>
+                        <li><a href="https://raelyn23050595.github.io/ScholarMatch_Raelyn/" class="nav-link">Scholarship Comparison<br>(Raelyn)</a></li>
+                        <li><a href="https://tohwangxin.github.io/C240_FA/" class="nav-link">Scholarship Application Guidance<br>(WangXin)</a></li>
+                        <li><a href="#about" class="nav-link">Ee Weng</a></li>
+                        <li><a href="#home" class="nav-link">Scholarship Fraud Detection (Ralph)</a></li>
                     </ul>
                 </nav>
             </div>
@@ -44,135 +46,86 @@
         <section class="hero">
             <div class="container">
                 <div class="hero-content">
-                    <h2 class="hero-title">Find Scholarships You Actually Qualify For</h2>
-                    <p class="hero-subtitle">Stop wasting time on scholarships you can't get. Our AI checks your eligibility instantly—in simple English.</p>
-                    <a href="#checker" class="cta-button">Check Your Eligibility Now</a>
+                    <h2 class="hero-title">Your Scholarship Application Journey Starts Here</h2>
+                    <p class="hero-subtitle">Get step-by-step guidance from ScholarMatch, your friendly scholarship advisor. We help you apply confidently and correctly.</p>
+                    <a href="#guide" class="cta-button">Start Your Application</a>
                 </div>
             </div>
         </section>
 
 
-        <!-- Problem Section -->
+        <!-- How We Help Section -->
         <section class="problem-section">
             <div class="container">
-                <h2 class="section-title">The Problem Students Face</h2>
+                <h2 class="section-title">How ScholarMatch Helps You</h2>
                 <div class="problem-grid">
                     <div class="problem-card">
-                        <span class="problem-icon" aria-hidden="true">📊</span>
-                        <h3>Different Requirements</h3>
-                        <p>Every scholarship has different GPA, CCA, income, or course criteria</p>
+                        <span class="problem-icon" aria-hidden="true">📋</span>
+                        <h3>Application Guidance</h3>
+                        <p>Understand each stage of the application process with clear, step-by-step instructions</p>
                     </div>
                     <div class="problem-card">
-                        <span class="problem-icon" aria-hidden="true">🌐</span>
-                        <h3>Scattered Information</h3>
-                        <p>Information is spread across multiple websites and platforms</p>
+                        <span class="problem-icon" aria-hidden="true">✍️</span>
+                        <h3>Essay Writing Tips</h3>
+                        <p>Learn how to craft compelling personal statements with structure and examples</p>
                     </div>
                     <div class="problem-card">
                         <span class="problem-icon" aria-hidden="true">📝</span>
-                        <h3>Confusing Language</h3>
-                        <p>Requirements written in formal, hard-to-understand terms</p>
+                        <h3>Document Checklists</h3>
+                        <p>Never miss a required document with our comprehensive application checklists</p>
                     </div>
                     <div class="problem-card">
                         <span class="problem-icon" aria-hidden="true">⏰</span>
-                        <h3>Wasted Time</h3>
-                        <p>Students apply for scholarships they're not even eligible for</p>
+                        <h3>Deadline Reminders</h3>
+                        <p>Stay on track with timeline planning and deadline management support</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Eligibility Checker Section -->
-        <section id="checker" class="checker-section">
+        <!-- Application Guide Section -->
+        <section id="guide" class="checker-section">
             <div class="container">
-                <h2 class="section-title">Check Your Eligibility</h2>
-                <p class="section-subtitle">Answer a few simple questions and we'll show you scholarships you qualify for</p>
+                <h2 class="section-title">Ready to Apply?</h2>
+                <p class="section-subtitle">Chat with ScholarMatch below to get personalized guidance for your scholarship application</p>
                 
-                <form id="eligibility-form" class="eligibility-form" novalidate>
-                    <!-- GPA Input -->
-                    <div class="form-group">
-                        <label for="gpa" class="form-label">
-                            What is your GPA?
-                            <span class="help-text">Enter a number between 0.0 and 4.0</span>
-                        </label>
-                        <input 
-                            type="number" 
-                            id="gpa" 
-                            name="gpa" 
-                            class="form-input" 
-                            min="0" 
-                            max="4.0" 
-                            step="0.01" 
-                            placeholder="e.g., 3.5"
-                            required
-                            aria-required="true"
-                            aria-describedby="gpa-error">
-                        <span id="gpa-error" class="error-message" role="alert" aria-live="polite"></span>
+                <div class="guide-content">
+                    <div class="guide-card">
+                        <h3>📌 What You Can Ask</h3>
+                        <ul class="guide-list">
+                            <li>What documents do I need for [scholarship name]?</li>
+                            <li>How do I structure my personal statement?</li>
+                            <li>What makes a strong application answer?</li>
+                            <li>What are the application stages for [university]?</li>
+                            <li>How should I organize my application timeline?</li>
+                        </ul>
                     </div>
 
-                    <!-- Income Input -->
-                    <div class="form-group">
-                        <label for="income" class="form-label">
-                            What is your household income?
-                            <span class="help-text">Annual income in dollars</span>
-                        </label>
-                        <select id="income" name="income" class="form-select" required aria-required="true">
-                            <option value="">Select income range</option>
-                            <option value="low">Below $30,000</option>
-                            <option value="medium">$30,000 - $60,000</option>
-                            <option value="high">Above $60,000</option>
-                        </select>
-                        <span id="income-error" class="error-message" role="alert" aria-live="polite"></span>
+                    <div class="guide-card">
+                        <h3>✅ Application Essentials</h3>
+                        <ul class="guide-list">
+                            <li><strong>Research First:</strong> Know the scholarship requirements thoroughly</li>
+                            <li><strong>Start Early:</strong> Give yourself 4-6 weeks before deadlines</li>
+                            <li><strong>Gather Documents:</strong> Transcripts, letters of recommendation, essays</li>
+                            <li><strong>Proofread:</strong> Have someone review your application before submitting</li>
+                            <li><strong>Follow Instructions:</strong> Stick to word limits and formatting guidelines</li>
+                        </ul>
                     </div>
 
-                    <!-- Course/Field of Study -->
-                    <div class="form-group">
-                        <label for="course" class="form-label">
-                            What are you studying?
-                            <span class="help-text">Your field of study or major</span>
-                        </label>
-                        <input 
-                            type="text" 
-                            id="course" 
-                            name="course" 
-                            class="form-input" 
-                            placeholder="e.g., Computer Science, Engineering"
-                            required
-                            aria-required="true"
-                            aria-describedby="course-error">
-                        <span id="course-error" class="error-message" role="alert" aria-live="polite"></span>
+                    <div class="guide-card">
+                        <h3>💡 Pro Tips</h3>
+                        <ul class="guide-list">
+                            <li>Tailor each application to the specific scholarship</li>
+                            <li>Show, don't just tell - use specific examples from your life</li>
+                            <li>Be authentic - let your genuine voice shine through</li>
+                            <li>Address how the scholarship aligns with your goals</li>
+                            <li>Keep copies of all submitted applications</li>
+                        </ul>
                     </div>
-
-                    <!-- CCA/Activities -->
-                    <div class="form-group">
-                        <label for="activities" class="form-label">
-                            What activities are you involved in?
-                            <span class="help-text">Co-curricular activities, sports, volunteering</span>
-                        </label>
-                        <textarea 
-                            id="activities" 
-                            name="activities" 
-                            class="form-textarea" 
-                            rows="3" 
-                            placeholder="e.g., Student council, basketball team, community service"
-                            aria-describedby="activities-help"></textarea>
-                        <span id="activities-help" class="help-text">Optional - helps find more scholarships</span>
-                    </div>
-
-                    <!-- Submit Button -->
-                    <button type="submit" class="submit-button">
-                        Find My Scholarships
-                    </button>
-                </form>
-
-                <!-- Results Section (Initially Hidden) -->
-                <div id="results" class="results-section" role="region" aria-live="polite" aria-label="Scholarship results">
-                    <!-- Results will be dynamically inserted here -->
                 </div>
 
-                <!-- Loading Indicator -->
-                <div id="loading" class="loading-indicator" role="status" aria-live="polite" hidden>
-                    <span class="spinner" aria-hidden="true"></span>
-                    <span>Finding scholarships for you...</span>
+                <div class="cta-box">
+                    <p class="cta-text">👋 <strong>Need help right now?</strong> Click the chat button in the bottom-right corner to talk with ScholarMatch!</p>
                 </div>
             </div>
         </section>
@@ -282,49 +235,34 @@
     <!-- JavaScript -->
     <script src="js/app.js"></script>
     
-    <!-- Flowise AI Chatbot Embed -->
-    <script type="module">
-        import Chatbot from "https://cdn.jsdelivr.net/npm/flowise-embed/dist/web.js"
-        Chatbot.init({
-            chatflowid: "6a5712e1-6ff9-48e7-baee-c7b9c64866b4",
-            apiHost: "https://flowise-production-ad0b.up.railway.app",
-            theme: {
-                button: {
-                    backgroundColor: "#2563EB",
-                    right: 20,
-                    bottom: 20,
-                    size: "medium",
-                    iconColor: "white",
-                    customIconSrc: "https://raw.githubusercontent.com/walkxcode/dashboard-icons/main/svg/google-messages.svg",
-                },
-                chatWindow: {
-                    welcomeMessage: "Hi! 👋 I'm your AI Scholarship Assistant. Ask me anything about scholarships, eligibility, or how to find funding for your education!",
-                    backgroundColor: "#ffffff",
-                    height: 600,
-                    width: 400,
-                    fontSize: 16,
-                    poweredByTextColor: "#64748B",
-                    botMessage: {
-                        backgroundColor: "#F1F5F9",
-                        textColor: "#1E293B",
-                        showAvatar: true,
-                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/parroticon.png",
-                    },
-                    userMessage: {
-                        backgroundColor: "#2563EB",
-                        textColor: "#ffffff",
-                        showAvatar: true,
-                        avatarSrc: "https://raw.githubusercontent.com/zahidkhawaja/langchain-chat-nextjs/main/public/usericon.png",
-                    },
-                    textInput: {
-                        placeholder: "Ask about scholarships...",
-                        backgroundColor: "#ffffff",
-                        textColor: "#1E293B",
-                        sendButtonColor: "#2563EB",
-                    }
-                }
+    <!-- Botpress AI Chatbot Embed -->
+   
+
+    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
+<script src="https://files.bpcontent.cloud/2026/01/16/02/20260116025654-SG2G2YNA.js" defer></script>
+    
+    
+    
+    <!-- Botpress Customization -->
+    <style>
+        /* Make Botpress chatbot larger */
+        #bp-web-widget-container {
+            width: 450px !important;
+            height: 700px !important;
+        }
+        
+        /* Increase font size */
+        #bp-web-widget iframe {
+            font-size: 16px !important;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            #bp-web-widget-container {
+                width: 100% !important;
+                height: 80vh !important;
             }
-        })
-    </script>
+        }
+    </style>
 </body>
 </html>

@@ -55,13 +55,13 @@ function embedFlowiseChatbot() {
 
 // Option 2: Full Page Chatbot (Replaces entire page)
 function loadFullPageChatbot() {
-    window.location.href = `https://flowise-production-ad0b.up.railway.app/chatbot/6a5712e1-6ff9-48e7-baee-c7b9c64866b4`;
+    window.location.href = `https://flowise-production-ad0b.up.railway.app/api/v1/prediction/34b40b8f-961d-443b-82a1-0415865368dd`;
 }
 
 // Option 3: Iframe Embed (Can be placed anywhere on page)
 function createChatbotIframe() {
     const iframe = document.createElement('iframe');
-    iframe.src = 'https://flowise-production-ad0b.up.railway.app/chatbot/6a5712e1-6ff9-48e7-baee-c7b9c64866b4';
+    iframe.src = 'https://flowise-production-ad0b.up.railway.app/api/v1/prediction/34b40b8f-961d-443b-82a1-0415865368dd';
     iframe.style.width = '100%';
     iframe.style.height = '600px';
     iframe.style.border = 'none';

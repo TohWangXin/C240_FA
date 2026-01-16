@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Essay Prompt Library - Scholarship essay writing tools and examples">
+    <title>Essay Library - ScholarMatch</title>
+    
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+ 
+    <!-- Header / Navbar -->
+    <header class="header" role="banner">
+        <div class="container">
+            <div class="header-content">
+                <a href="https://raelyn23050595.github.io/ScholarMatch/" class="logo">
+                    <img src="images/logo.png" alt="ScholarMatch Logo" class="logo-icon">
+                    <h1 class="logo-text">ScholarMatch</h1>
+                </a>
+                <nav class="nav" role="navigation" aria-label="Main navigation">
+                    <ul class="nav-list">
+                        <li><a href="https://23018472-tunaungmyin.github.io/C240_AungMyin/" class="nav-link">Search Scholarships<br>(Aung Myin)</a></li>
+                        <li><a href="https://raelyn23050595.github.io/ScholarMatch_Raelyn/" class="nav-link">Scholarship Comparison<br>(Raelyn)</a></li>
+                        <li><a href="https://tohwangxin.github.io/C240_FA/" class="nav-link">Scholarship Application Guidance<br>(WangXin)</a></li>
+                        <li><a href="#about" class="nav-link">Ee Weng</a></li>
+                        <li><a href="#home" class="nav-link">Scholarship Fraud Detection (Ralph)</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main-content" role="main">
+        <!-- Essay Prompt Library Section -->
+        <section id="essay-library" class="essay-library">
+            <div class="container">
+                <h2 class="section-title">📝 Essay Prompt Library</h2>
+                <p class="section-subtitle">Common scholarship essay questions with examples and writing tools</p>
+
+                <!-- Writing Tools -->
+                <div class="writing-tools">
+                    <div class="tool-card">
+                        <h3>✍️ Essay Writing Helper</h3>
+                        <label for="essay-input" class="tool-label">Paste or write your essay draft:</label>
+                        <textarea 
+                            id="essay-input" 
+                            class="essay-textarea" 
+                            rows="8" 
+                            placeholder="Start writing or paste your essay here...">
+                        </textarea>
+                        
+                        <button id="check-essay-btn" class="check-essay-btn">
+                            🤖 Check Essay Quality
+                        </button>
+                        
+                        <div class="tool-stats">
+                            <div class="stat-item">
+                                <span class="stat-label">Word Count:</span>
+                                <span id="word-count" class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Character Count:</span>
+                                <span id="char-count" class="stat-value">0</span>
+                            </div>
+                            <div class="stat-item">
+                                <span class="stat-label">Tone:</span>
+                                <span id="tone-result" class="stat-value">Neutral</span>
+                            </div>
+                        </div>
+                        
+                        <div id="tone-feedback" class="tone-feedback"></div>
+                        
+                        <!-- AI Quality Check Results -->
+                        <div id="quality-results" class="quality-results" style="display: none;">
+                            <h4 class="quality-title">📊 Essay Quality Analysis</h4>
+                            <div id="quality-score" class="quality-score"></div>
+                            <div id="quality-feedback" class="quality-feedback-items"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Essay Prompts -->
+                <div class="prompts-section">
+                    <h3 class="prompts-title">Common Essay Prompts & Examples</h3>
+                    
+                    <!-- Prompt 1 -->
+                    <div class="prompt-card">
+                        <h4 class="prompt-question">💼 "Tell us about yourself and your goals"</h4>
+                        <p class="prompt-tips"><strong>Tips:</strong> Focus on your passions, experiences, and how this scholarship helps you achieve specific goals. Be authentic and specific.</p>
+                        
+                        <div class="examples">
+                            <div class="example weak">
+                                <h5>❌ Weak Example:</h5>
+                                <p>"I am a good student who works hard. I want to go to university to study business because it will help me get a good job. This scholarship will help me pay for school."</p>
+                                <p class="example-why"><strong>Why it's weak:</strong> Too generic, no specific details, doesn't show personality or clear goals.</p>
+                            </div>
+                            
+                            <div class="example strong">
+                                <h5>✅ Strong Example:</h5>
+                                <p>"Growing up in my family's small retail shop, I witnessed firsthand how entrepreneurship transforms communities. Helping my parents manage inventory and customer relationships sparked my passion for business analytics. At Singapore Polytechnic, I'm pursuing Business Studies with a focus on data-driven decision making. This scholarship would enable me to complete my degree and launch a social enterprise helping local SMEs digitize their operations."</p>
+                                <p class="example-why"><strong>Why it's strong:</strong> Personal story, specific examples, clear connection between past and future, shows impact.</p>
+                            </div>
+                        </div>
+                    </div>
+
+    <!-- JavaScript -->
+    <script src="js/app.js"></script>
+    
+    <!-- Botpress AI Chatbot Embed -->
+    <script src="https://cdn.botpress.cloud/webchat/v3.5/inject.js"></script>
+    <script src="https://files.bpcontent.cloud/2026/01/16/02/20260116025654-SG2G2YNA.js" defer></script>
+    
+    <!-- Botpress Customization -->
+    <style>
+        /* Make Botpress chatbot larger */
+        #bp-web-widget-container {
+            width: 450px !important;
+            height: 700px !important;
+        }
+        
+        /* Increase font size */
+        #bp-web-widget iframe {
+            font-size: 16px !important;
+        }
+        
+        /* Mobile responsive */
+        @media (max-width: 768px) {
+            #bp-web-widget-container {
+                width: 100% !important;
+                height: 80vh !important;
+            }
+        }
+    </style>
+</body>
+</html>
