@@ -143,63 +143,83 @@ p {
 .header {
     background: var(--color-white);
     box-shadow: var(--shadow-sm);
-    position: sticky;
+    position: fixed;
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 50;
- 
+    padding: var(--spacing-md) 0;
+    transition: transform 0.3s ease;
 }
-
+ 
+.header.hide {
+    transform: translateY(-100%);
+}
+ 
 .header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding-right: 5rem;
 }
-
+ 
+/* Logo */
 .logo {
     display: flex;
     align-items: center;
     gap: var(--spacing-xs);
     text-decoration: none;
-    transition: opacity var(--transition-fast);
+    cursor: pointer;
 }
-
-.logo:hover {
-    opacity: 0.8;
+ 
+.logo:hover,
+.logo:focus {
+    text-decoration: none;
+    outline: none;
 }
-
+ 
 .logo-icon {
-    height: 100px;
+    height: 90px;
     width: auto;
     display: block;
 }
-
+ 
 .logo-text {
-    font-size: var(--font-size-xl);
+    font-size: 22px;
     font-weight: 700;
     color: var(--color-primary);
     margin: 0;
 }
-
+ 
+/* Navigation */
 .nav {
     flex: 1;
     display: flex;
-    justify-content: center;
+    justify-content: flex-end;
+    margin-left: 10rem;
 }
-
+ 
 .nav-list {
     display: flex;
     list-style: none;
     gap: var(--spacing-lg);
 }
-
+ 
+.nav-list li {
+    flex: 1;
+    text-align: center;
+}
+ 
 .nav-link {
     color: var(--color-neutral-dark);
     text-decoration: none;
     font-weight: 500;
     transition: color var(--transition-fast);
     padding: var(--spacing-xs) 0;
+    display: block;
+  
 }
-
+ 
 .nav-link:hover,
 .nav-link:focus {
     color: var(--color-primary);
@@ -213,6 +233,7 @@ p {
     color: var(--color-white);
     padding: var(--spacing-2xl) 0;
     text-align: center;
+    margin-top: 120px; /* Account for fixed navbar height */
 }
 
 .hero-content {
@@ -313,29 +334,50 @@ p {
    APPLICATION GUIDE SECTION
    =================================== */
 .checker-section {
-    padding: var(--spacing-xl) 0;
+    padding: var(--spacing-lg) 0;
     background: var(--color-neutral-light);
+}
+
+.checker-section .section-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.checker-section .section-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--color-neutral-medium);
+    margin-bottom: var(--spacing-lg);
 }
 
 .guide-content {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    gap: var(--spacing-lg);
-    margin: var(--spacing-xl) 0;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--spacing-md);
+    margin: var(--spacing-md) 0;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .guide-card {
     background: var(--color-white);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    border-left: 3px solid var(--color-primary);
+    transition: all var(--transition-base);
+}
+
+.guide-card:hover {
     box-shadow: var(--shadow-md);
-    border-top: 4px solid var(--color-primary);
+    transform: translateY(-2px);
 }
 
 .guide-card h3 {
     color: var(--color-neutral-dark);
-    margin-bottom: var(--spacing-md);
-    font-size: var(--font-size-large);
+    margin-bottom: var(--spacing-sm);
+    font-size: var(--font-size-base);
+    font-weight: 600;
 }
 
 .guide-list {
@@ -345,10 +387,11 @@ p {
 
 .guide-list li {
     color: var(--color-neutral-medium);
-    padding: var(--spacing-xs) 0;
-    padding-left: var(--spacing-lg);
+    padding: 6px 0;
+    padding-left: var(--spacing-md);
     position: relative;
-    line-height: 1.6;
+    line-height: 1.5;
+    font-size: 0.875rem;
 }
 
 .guide-list li::before {
@@ -357,6 +400,7 @@ p {
     left: 0;
     color: var(--color-primary);
     font-weight: 700;
+    font-size: 0.875rem;
 }
 
 .guide-list li strong {
@@ -365,16 +409,19 @@ p {
 
 .cta-box {
     background: var(--gradient-primary);
-    padding: var(--spacing-lg);
-    border-radius: var(--radius-lg);
+    padding: var(--spacing-md);
+    border-radius: var(--radius-md);
     text-align: center;
-    margin-top: var(--spacing-xl);
-    box-shadow: var(--shadow-lg);
+    margin-top: var(--spacing-lg);
+    box-shadow: var(--shadow-md);
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .cta-text {
     color: var(--color-white);
-    font-size: var(--font-size-large);
+    font-size: var(--font-size-base);
     margin: 0;
 }
 
@@ -488,43 +535,70 @@ p {
    HOW IT WORKS SECTION
    =================================== */
 .how-it-works {
-    padding: var(--spacing-2xl) 0;
+    padding: var(--spacing-lg) 0;
     background: var(--color-white);
+}
+
+.how-it-works .section-title {
+    font-size: var(--font-size-2xl);
+    margin-bottom: var(--spacing-sm);
+}
+
+.how-it-works .section-subtitle {
+    font-size: var(--font-size-base);
+    color: var(--color-neutral-medium);
+    margin-bottom: var(--spacing-md);
 }
 
 .steps-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: var(--spacing-lg);
-    margin-top: var(--spacing-xl);
+    grid-template-columns: repeat(4, 1fr);
+    gap: var(--spacing-md);
+    margin-top: var(--spacing-md);
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .step-card {
     text-align: center;
-    padding: var(--spacing-lg);
+    padding: var(--spacing-md);
+    background: var(--color-neutral-light);
+    border-radius: var(--radius-md);
+    transition: all var(--transition-base);
+}
+
+.step-card:hover {
+    background: var(--color-white);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-4px);
 }
 
 .step-number {
     display: inline-block;
-    width: 60px;
-    height: 60px;
-    line-height: 60px;
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
     background: var(--gradient-primary);
     color: var(--color-white);
     border-radius: 50%;
-    font-size: var(--font-size-xl);
+    font-size: var(--font-size-large);
     font-weight: 700;
-    margin-bottom: var(--spacing-md);
+    margin-bottom: var(--spacing-sm);
 }
 
 .step-card h3 {
     color: var(--color-neutral-dark);
-    margin-bottom: var(--spacing-sm);
+    margin-bottom: var(--spacing-xs);
+    font-size: var(--font-size-base);
+    font-weight: 600;
 }
 
 .step-card p {
     color: var(--color-neutral-medium);
     margin-bottom: 0;
+    font-size: 0.875rem;
+    line-height: 1.5;
 }
 
 /* ===================================
@@ -619,7 +693,13 @@ p {
     
     .problem-grid,
     .steps-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--spacing-sm);
+    }
+    
+    .guide-content {
         grid-template-columns: 1fr;
+        gap: var(--spacing-sm);
     }
     
     .eligibility-form {
@@ -738,6 +818,7 @@ p {
 .essay-library {
     padding: var(--spacing-xl) 0;
     background: var(--color-white);
+    margin-top: 120px; /* Account for fixed navbar height */
 }
 
 .essay-library .section-title {

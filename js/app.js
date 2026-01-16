@@ -86,6 +86,45 @@ const debounce = (func, wait) => {
 };
 
 /**
+ * Handle navbar hide/show on scroll
+ */
+const setupNavbarScroll = () => {
+    const header = document.querySelector('.header');
+    if (!header) return;
+
+    let lastScrollTop = 0;
+    let scrollThreshold = 10; // Minimum scroll distance to trigger hide/show
+    
+    const handleScroll = () => {
+        const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+        
+        // Don't hide if at the top of the page
+        if (scrollTop <= 100) {
+            header.classList.remove('hide');
+            return;
+        }
+        
+        // Check scroll direction
+        if (Math.abs(scrollTop - lastScrollTop) < scrollThreshold) {
+            return; // Ignore small scroll movements
+        }
+        
+        if (scrollTop > lastScrollTop) {
+            // Scrolling down - hide navbar
+            header.classList.add('hide');
+        } else {
+            // Scrolling up - show navbar
+            header.classList.remove('hide');
+        }
+        
+        lastScrollTop = scrollTop;
+    };
+    
+    // Use debounced scroll handler for better performance
+    window.addEventListener('scroll', debounce(handleScroll, 10));
+};
+
+/**
  * Show toast notification
  * @param {string} message - Message to display
  * @param {string} type - Type of toast (success, error, warning)
@@ -749,6 +788,9 @@ const autofillForm = () => {
  */
 const init = () => {
     console.log('🌟 AI Scholarship Finder initialized');
+    
+    // Setup navbar scroll behavior
+    setupNavbarScroll();
     
     // Setup form submission
     const form = document.getElementById('eligibility-form');
